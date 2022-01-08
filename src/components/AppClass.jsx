@@ -1,12 +1,56 @@
 import React, {Component} from 'react';
 
+export default class AppClass extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            idForTodo: 4,
+            todos: [
+                {
+                    id: 1,
+                    title: 'Finish React Series',
+                    isComplete: false,
+                },
+                {
+                    id: 2,
+                    title: 'Go Grocery',
+                    isComplete: true,
+                },
+                {
+                    id: 3,
+                    title: 'Take over world',
+                    isComplete: false,
+                },
+            ],
+        };
+    }
+
+    addTodo = event => {
+        event.preventDefault();
+
+        this.setState(prevState => {
+
+            const newTodos = [
+                ...prevState.todos,
+                {
+                    id: 4,
+                    title: 'This is class based components',
+                    isComplete: false,
+                }
+            ]
+
+            return {todos: newTodos};
+        });
+    };
+}
+
 class AppClass extends Component {
     render() {
         return (
             <div className="todo-app-container">
                 <div className="todo-app">
                     <h2>Todo App</h2>
-                    <form action="#">
+                    <form action="#" onSubmit={this.addTodo}>
                         <input
                             type="text"
                             className="todo-input"
@@ -16,7 +60,7 @@ class AppClass extends Component {
 
                     <ul className="todo-list">
                         {todos.map((todo, index) => (
-                            <li className="todo-item-container">
+                            <li key={todo.id} className="todo-item-container">
                                 <div className="todo-item">
                                     <input type="checkbox"/>
                                     <span className="todo-item-label">{todo.title}</span>
@@ -66,5 +110,3 @@ class AppClass extends Component {
         );
     }
 }
-
-export default AppClass;
