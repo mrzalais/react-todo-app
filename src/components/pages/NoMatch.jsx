@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function About() {
+export default function NoMatch() {
   return (
     <div className="container">
-      This is the about page
+        404 Page Not Found!
     </div>
   )
 }
